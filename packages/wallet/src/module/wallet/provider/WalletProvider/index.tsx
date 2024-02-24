@@ -9,6 +9,7 @@ import {
 import type { KernelWebAuthNSmartAccount } from "@/context/wallet/smartWallet/WebAuthNSmartWallet";
 import { buildSmartWallet } from "@/context/wallet/utils/buildSmartWallet";
 import type { Session } from "@/types/Session";
+import { AarcProvider } from "@aarc-xyz/deposit-widget";
 import { smartAccount } from "@permissionless/wagmi";
 import { createSmartAccountClient } from "permissionless";
 import { sponsorUserOperation } from "permissionless/actions/pimlico";
@@ -131,6 +132,24 @@ export const useWallet = (): UseWalletHook => {
     return context;
 };
 
+const aarkConfig = {
+    destination: {
+        chainId: 137,
+        tokenAddress: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+        walletAddress: "0x7C1a357e76E0D118bB9E2aCB3Ec4789922f3e050",
+        tokenSymbol: "USDC",
+        tokenDecimals: 6,
+    },
+    appearance: {
+        logoUrl: "demo.aarc.xyz/AarcLogo.png",
+        themeColor: "#1677FF",
+    },
+    apiKeys: {
+        transak: "TRANSAK_API_KEY",
+        aarcSDK: "AARC_API_KEY"
+    }
+}
+
 export function WalletProvider({
     session,
     children,
@@ -138,6 +157,12 @@ export function WalletProvider({
     const hook = useWalletHook({ session });
 
     return (
-        <WalletContext.Provider value={hook}>{children}</WalletContext.Provider>
+        <WalletContext.Provider value={hook}>
+            {typeof window !== "undefined" ? (
+                <AarcProvider config={aarkConfig}>{children}</AarcProvider>
+            ) : (
+                { children }
+            )}
+        </WalletContext.Provider>
     );
 }
