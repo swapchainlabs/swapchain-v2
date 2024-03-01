@@ -27,6 +27,8 @@
     "@tanstack/react-query-devtools": "^5.24.1",
     "@tanstack/store": "^0.3.1",
     "@uidotdev/usehooks": "^2.4.1",
+    "@walletconnect/core": "^2.11.2",
+    "@walletconnect/web3wallet": "^1.10.2",
     "dexie": "^4.0.1-beta.9",
     "dexie-react-hooks": "^1.1.7",
     "humanize-duration": "^3.31.0",
@@ -46,6 +48,7 @@
     "wagmi": "^2.5.7"
   },
   "devDependencies": {
+    "pino-pretty": "^10.3.1",
     "@simplewebauthn/types": "^9.0.1",
     "@types/humanize-duration": "^3.27.4",
     "@types/node": "^20",
