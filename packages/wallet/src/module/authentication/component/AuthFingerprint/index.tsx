@@ -3,6 +3,7 @@ import { FingerprintGrey } from "@/assets/icons/FingerprintGrey";
 import { ButtonRipple } from "@/module/common/component/ButtonRipple";
 import type React from "react";
 import type { PropsWithChildren, ReactNode } from "react";
+import { Lumiflex } from "uvcanvas";
 import styles from "./index.module.css";
 
 type AuthFingerprintProps = {
@@ -31,11 +32,14 @@ export function AuthFingerprint({
             <ButtonRipple
                 onClick={action}
                 disabled={disabled}
-                size={"big"}
+                size={"none"}
                 className={`${className} ${styles["authFingerprint__button--centered"]}`}
             >
-                {content}
-                <span>{children}</span>
+                <Lumiflex className={styles.authFingerprint__shader} />
+                <span className={styles.authFingerprint__span}>
+                    {content}
+                    <span>{children}</span>
+                </span>
             </ButtonRipple>
         </>
     );

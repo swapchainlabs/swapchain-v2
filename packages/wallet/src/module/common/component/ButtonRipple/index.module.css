@@ -43,6 +43,10 @@
     }
 }
 
+.size--none {
+    padding: 0;
+}
+
 .size--small {
     padding: 8px;
 }
