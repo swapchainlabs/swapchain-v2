@@ -141,14 +141,14 @@ const aarkConfig = {
         tokenDecimals: 6,
     },
     appearance: {
-        logoUrl: "demo.aarc.xyz/AarcLogo.png",
-        themeColor: "#1677FF",
+        logoUrl: "/favicons/icon-512.png",
+        themeColor: "#001432",
     },
     apiKeys: {
-        transak: "TRANSAK_API_KEY",
-        aarcSDK: "AARC_API_KEY"
-    }
-}
+        transak: process.env.TRANSAK_API_KEY,
+        aarcSDK: process.env.AARC_API_KEY,
+    },
+};
 
 export function WalletProvider({
     session,
@@ -158,11 +158,7 @@ export function WalletProvider({
 
     return (
         <WalletContext.Provider value={hook}>
-            {typeof window !== "undefined" ? (
-                <AarcProvider config={aarkConfig}>{children}</AarcProvider>
-            ) : (
-                { children }
-            )}
+            <AarcProvider config={aarkConfig}>{children}</AarcProvider>
         </WalletContext.Provider>
     );
 }
